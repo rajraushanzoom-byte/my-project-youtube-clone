@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube.com Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@0,100..900;1,100..900&display=swap"
+ rel="stylesheet">
+</head>
+<style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+        background-color: black;
+        color: white;
+        font-family: Roboto, Arial, sans-serif;
+     overflow-y: scroll;
+    }
+    .header {
+
+    height: 72px;
+    background: black;
+    display:flex;
+    align-items:center;
+    gap: 18px;
+    padding-right:30px;
+    padding-left:30px;
+    padding-top:0px;
+    padding-bottom:0px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    }
+    .left-header {
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+        min-width: 430px;
+
+    }
+    .menu {
+
+    font-size: 28px;
+    cursor:pointer;
+
+    }
+    .youtube-logo {
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 25px;
+    font-weight: bold;
+
+    }
+    
+.youtube-logo sup {
+    color: #aaa;
+    font-size: 11px;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+
+
+.search-container {
+
+    height: 48px;
+    display: flex;
+    flex: 1;
+    max-width: 730px;
+    background:black;
+    border: 1px solid #303030;
+    border-radius:25px;
+    overflow: hidden;
+
+}
+.search-container input {
+
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline:none;
+    color: white;
+    font-size:18px;
+    padding: 0 20px;
+
+}
+.search-container input::placeholder {
+
+    color: #888;
+}
+.search-container button {
+
+    width: 78px;
+    border:none;
+        border-left: 1px solid #303030;
+    background: #222;
+        color: white;
+        font-size:30px;
+        cursor:pointer;
+
+}
+.microphone {
+
+    width: 48px;
+    height:48px;
+    background: #222;
+    border-radius:50%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+}
+.right-header{
+    margin-left: auto;
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+.create{
+    background: #222;
+    color:white;
+    border:none;
+    border-radius: 25px;
+    padding: 13px 20px;
+     font-size: 16px;
+     font-weight: bold;
+     cursor: pointer;
+
+}
+.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background: #8753c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18px;
+}
+.sidebar {
+
+    width: 92px;
+    position: fixed;
+    left: 0;
+    top: 72px;
+    bottom: 0;
+    background:#0f0f0f;
+    padding-top:10px;
+}
+.sidebar-item {
+
+    width: 76px;
+    height: 78px;
+    margin: 5px auto;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:8px;
+    cursor:pointer;
+}
+    .sidebar-item:hover {
+    background: #272727;
+
+    }
+    .sidebar-item.active {
+    background: #272727;
+}
+.sidebar-item span {
+
+    font-size: 27px;
+
+}
+.sidebar-item p {
+
+    font-size: 11px;
+
+}
+.main {
+
+    margin-left: 115px;
+    padding-right:25px;
+    padding-top:8px;
+
+}
+.categories {
+
+    display: flex;
+    gap:14px;
+    overflow: hidden;
+        white-space: nowrap;
+    margin-bottom: 40px;
+
+}
+.category {
+
+    flex-shrink: 0;
+     background: #272727;
+    color: #eee;
+    border: none;
+    border-radius: 9px;
+     padding: 11px 17px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.category:hover {
+
+    background: #3a3a3a;
+}
+.category.selected {
+
+    background: #f1f1f1;
+
+    color: #111;
+}
+    
+    .thumbnail{
+        width:100%;
+        height:100%;
+            object-fit: cover;
+    display: block;
+
+    }
+    .duration{
+        position:absolute;
+        bottom: 8px;
+        right:8px;
+            background: rgba(0, 0, 0, 0.9);
+        padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    }
+    .video-info-grid{
+        display:grid;
+        grid-template-columns:
+        42px 1fr 18px;
+        gap:10px;
+        margin-top:13px;
+    }
+    
+    
+    
+    .video-title{
+        font-size: 17px;
+            line-height: 1.35;
+    font-weight: 600;
+    margin-bottom: 6px;
+
+    }
+    
+    .video-author{
+    color: rgb(96,96,96);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+
+
+.channel-picture{
+    display:inline-block;
+    width:42px;
+    vertical-align:top;
+    
+}
+.video-info{
+    min-width: 0;
+
+}
+
+.profile_picture{
+width:40px;
+border-radius:50px;
+}
+.thumbnail-row{
+   width: 100%;
+       aspect-ratio: 16 / 9;
+background: #222;
+    border-radius: 12px;
+        overflow: hidden;
+    position: relative;
+
+}
+.video-stats{
+    font-size: 12px; 
+    color: rgb(96,96,96); 
+}
+.video-grid{
+   display: grid;
+   grid-template-columns:  repeat(3, minmax(260px, 1fr)); 
+   column-gap:20px;
+   row-gap: 48px;
+}
+.more {
+    font-size: 23px;
+    cursor: pointer;
+}
+@media (max-width: 1100px) {
+
+
+    .left-header {
+
+        min-width: 260px;
+    }
+    .video-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(260px, 1fr));
+    }
+    .microphone {
+
+        display: none;
+    }
+}
+    @media (max-width: 700px) {
+
+
+    .header {
+
+        padding: 0 12px;
+    }
+    .left-header {
+
+        min-width: auto;
+    }
+    .youtube-logo span:nth-child(2) {
+
+        display: none;
+    }
+    .sidebar {
+
+        display: none;
+    }
+    .main {
+
+        margin-left: 12px;
+                padding-right: 12px;
+
+    }
+    .video-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+<body>
+
+ <header class="header">
+           <div class="left-header">
+              <div class="menu">☰</div>
+                <div class="youtube-logo">
+                 <span class="youtube-icon">
+                    <img src="thumbnail/Screenshot 2026-10-04 121626.png" alt="YouTube Logo" style="width: 40px; height: 30px; margin-top: 8px;">
+                 </span>
+                    <span>
+                    YouTube
+                </span>
+                <sup>
+                    IN
+                </sup>
+
+                </div>
+            </div>
+        <div class="search-container">
+        <input type="text" placeholder="Search">
+        <button>
+             ⌕
+        </button>
+        </div>
+        <div class="microphone">
+            <img src="thumbnail/Screenshot 2026-10-04 120633.png" alt="Microphone Icon" style="width: 47px; height: 47px;">
+        </div>
+
+        <div class="right-header">
+
+            <button class="create">
+                ＋ Create
+            </button>
+            <div class="notification">
+                <img src="thumbnail/Screenshot 2026-10-04 121113.png" alt="Notification Icon" style="width: 47px; height: 47px;">
+            </div>
+            <div class="profile">
+                R
+            </div>
+            </div>
+            </header>
+
+            <aside class="sidebar">
+                <div class="sidebar-item active">
+                    <img src="thumbnail/Screenshot 2026-10-04 120232.png" alt="Home Icon" style="width: 47px; height: 47px;">
+                    <p>Home</p>
+                </div>
+                <div class="sidebar-item">
+
+                        <img src="thumbnail/Screenshot 2026-10-04 115909.png" alt="shorts Icon" style="width: 47px; height: 47px;">
+            <p>Shorts</p>
+
+        </div>
+        <div class="sidebar-item">
+
+            <img src="thumbnail/Screenshot 2026-10-04 115702.png" alt="Subscriptions Icon" style="width: 47px; height: 47px;">
+
+            <p>Subscriptions</p>
+
+        </div>
+        <div class="sidebar-item">
+
+            <img src="thumbnail/Screenshot 2026-10-04 114946.png" alt="Library Icon" style="width: 47px; height: 47px;">
+
+            <p>You</p>
+
+        </div>
+            </aside>
+            <main class="main">
+                <div class="categories">
+
+            <button class="category selected">
+                All
+            </button>
+            <button class="category">
+                Music
+            </button>
+            <button class="category">
+                Mixes
+            </button>
+            <button class="category">
+                Science fiction
+            </button>
+            <button class="category">
+                Reverberation
+            </button>
+            <button class="category">
+                Data Structure
+            </button>
+            <button class="category">
+             Web Development
+            </button>
+            <button class="category">
+                Indian Pop Music
+            </button>
+            <button class="category">
+              Laptops
+            </button>
+            <button class="category">
+                Live
+            </button>
+            <button class="category">
+                Pop Music
+            </button>
+            <button class="category">
+                Animated film
+            </button>
+            <button class="category">
+                Presentation
+            </button>
+            </div>
+            
+            
+   <section class="video-grid">
+ <div class="video" > 
+        <div class="thumbnail-row">
+            <img class="thumbnail" src="thumbnail/hq720 (1).avif">
+             <span class="duration">
+                        1:08:59
+                    </span>  
+</div>
+        <div class="video-info-grid" >
+            <div class="channel-picture"> 
+                <img class="profile_picture" src="thumbnail/channels4_profile.jpg">
+</div>  
+            <div class="video-info">
+                <p class="video-title">HOOR | حور - Samar Jafri | Hoor| Audio
+
+                </p>
+     <p class="video-author">ShahStudio
+
+     </p>
+     <p class="video-stats">3.4M views • 6 months ago
+         </p>
+    </div>
+          <div class="more">
+            ⋮
+          </div>   
+</div>
+   
+    
+</div>
+<div class="video-preview" > 
+        <div class="thumbnail-row">
+        <img class="thumbnail" src="thumbnail/hq720.avif">   
+        </div>
+   <div class="video-info-grid">
+    <div class="channel-picture"> 
+                <img class="profile_picture" src="thumbnail/channels4_profile (1).jpg">
+</div>
+               <div class="video-info">
+
+     <p class="video-title">Speak With Me and Shadow to Improve Your English Naturally (Think in English)</p>
+     <p class="video-author">Volka English</p>
+     <p class="video-stats">417K views • 2 weeks ago </p>
+
+</div>
+</div> 
+</div>
+<div class="video-preview" > 
+        <div class="thumbnail-row">
+            <img class="thumbnail" src="thumbnail/hq720 (2).avif">   
+</div>
+        <div class="video-info-grid" >
+            <div class="channel-picture"> 
+                <img class="profile_picture" src="thumbnail/channels4_profile (3).jpg">
+</div>  
+            <div class="video-info">
+                <p class="video-title">10 Best Alternatives to Maggi, Parle G, Lays and Bhujia10 Best Alternatives to Maggi, Parle G, Lays and Bhujia
+
+                </p>
+     <p class="video-author">Food Pharmer
+
+     </p>
+     <p class="video-stats">3.4M views • 6 months ago
+         </p>
+    </div>
+             
+</div>
+   
+    
+</div>
+<div class="video-preview" >
+        <div class="thumbnail-row">
+        <img class="thumbnail" src="thumbnail/hq720_custom_1.avif">   
+        </div>
+   <div class="video-info-grid">
+    <div class="channel-picture"> 
+                <img class="profile_picture" src="thumbnail/channels4_profile (2).jpg">
+</div>
+               <div class="video-info">
+
+     <p class="video-title">Vector Joins The Avengers</p>
+     <p class="video-author">TortillaDelta13</p>
+     <p class="video-stats">3.4m views • 5 days ago  </p>
+
+ </div>
+ </div> 
+ </div>
+       <div class="video-preview" > 
+         <div class="thumbnail-row">
+            <img class="thumbnail" src="thumbnail/hq720 (3).avif">   
+         </div>
+         <div class="video-info-grid" >
+            <div class="channel-picture"> 
+                <img class="profile_picture" 
+                src="thumbnail/unnamed.jpg">
+            </div>
+            <div class="video-info">
+                <p class="video-title">
+                    Setting Up a Self-Improving AI Agent in the Cloud — Day in the Life
+
+                </p>
+                <p class="video-author">
+                  jakebeau
+
+                </p>
+                <p class="video-stats">
+                    10k views • 2 days ago
+                </p>
+            </div>
+             
+        </div>
+   
+    </div>
+<div class="video-preview" > 
+        <div class="thumbnail-row">
+        <img class="thumbnail" src="thumbnail/hq720 (4).avif">   
+
+        </div>
+   <div class="video-info-grid">
+    <div class="channel-picture"> 
+                <img class="profile_picture" src="thumbnail/channels4_profile (5).jpg">
+</div>
+               <div class="video-info">
+
+     <p class="video-title">Tobey Maguire Spider-Man VS X-Men (Avengers Doomsday)</p>
+     <p class="video-author">LATE-SHIFT STUDIOS</p>
+     <p class="video-stats">1M views • 7 days ago </p>
+
+</div>
+</div> 
+</div>
+</section>
+</main>
+</body>
+</html>     

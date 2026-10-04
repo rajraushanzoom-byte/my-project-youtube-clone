@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display1</title>
+    <style>
+    .name{
+        font-family: Arial;
+        font-size:20px;
+padding: 5px;
+display: block;
+margin-bottom: 5px;
+    }
+    .email{
+        
+        font-family:Arial;
+        padding:5px;
+        font-size:20px;
+        display:block;
+    }
+    .text{
+        font-size:20px;
+        font-weight: 100;
+        display: inline-block;
+        vertical-align:middle;
+        width: 200px;
+
+    }
+    .yes{
+        margin-left:20px;
+        font-size:17px;
+        cursor:pointer;
+    }
+    .no{
+        font-size:17px;
+        cursor:pointer;
+    }
+    .logoname{
+        width:700px;
+        margin-left:90px;
+    }
+    .search{
+        width:700px;
+        
+        margin-right:400px;
+        margin-left:30px;
+        height:44px;
+        padding: 0 20px;
+        border-radius:30px;
+        border: 1px solid #eeeded; /* Google uses a very thin, light gray border */
+        border:none;
+          box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); /* Google uses a very thin, light gray border */
+outline:none;
+font-size:16px;
+display:inline-block;
+    }
+    .logo{
+        display:block;
+    }
+    .naam{
+        display:flex;
+        gap:20px;
+
+    }
+
+    .firstname{
+        margin-top:50px;
+        padding:15px;
+        font-size:20px;
+        border-radius:20px;
+        border:1px solid grey;
+        font-family:Arial;
+       margin-left:10px;
+       text-align:center;
+    }
+    .email{
+        margin-top:20px;
+        width:570px;
+        border-radius:20px;
+        border:1px solid grey;
+        margin-left:10px;
+        height:30px;
+        text-align:center;
+    }
+    .sign{
+        background-color: rgb(82, 82, 255);
+        margin-top:20px;
+        width:570px;
+        height:50px;
+        font-size:20px;
+        color:aliceblue;
+        border-radius:30px;
+        border:none;
+        transition:0.3s;
+        text-align:center;
+        margin-left:15px;
+    }
+    .sign:hover{
+        background:blue;
+         transform: translateY(+8px);
+
+    }
+    
+</style>
+</head>
+<body>
+    <div>
+    <input class="name" type="text" placeholder="Name"/><br>
+    <input class="email" type="text" placeholder="Email"/>
+    <div></div>
+    <div>
+        <p class="text">Thanks for chatting with our<br>
+        customer support.Would you<br>
+    like to take our quick survey</p>
+<button class="yes">Yes</button>
+<button class="no">No</button>
+    </div>
+    <div class="logo">
+         <img class="logoname" src="Google-Logo.wine.svg">
+     
+     <input class="search" type="text" placeholder="Search Google or type a URL">
+        </div>
+<div></div>
+<div class="intro">
+<div class="naam">
+    <input class="firstname" type="text" placeholder="First Name"/>
+    <input class="firstname" type="text" placeholder="Last Name"/>
+    
+</div>
+<div>
+    <input class="email" type="text" placeholder="Email"/>
+
+</div>
+<div>
+    <button class="sign">Sign Up</button>
+</div>
+</div>
+
+</body>
+</html>
+
